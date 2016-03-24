@@ -1,0 +1,10 @@
+version: "2"
+services:
+  kdc-kadmin:
+    build: ./kdc-kadmin
+    env_file: kerberos.env
+    ports:
+      - "749:749"
+      - "88:88"
+    volumes:
+      - /dev/urandom:/dev/random
