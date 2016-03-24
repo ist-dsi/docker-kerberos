@@ -4,7 +4,6 @@ echo "==== Kerberos Client =====================================================
 echo "==================================================================================="
 KADMIN_PRINCIPAL_FULL=$KADMIN_PRINCIPAL@$REALM
 echo "REALM: $REALM"
-echo "KDC_KADMIN_SERVER: $KDC_KADMIN_SERVER"
 echo "KADMIN_PRINCIPAL_FULL: $KADMIN_PRINCIPAL_FULL"
 echo "KADMIN_PASSWORD: $KADMIN_PASSWORD"
 echo ""
@@ -22,8 +21,8 @@ tee /etc/krb5.conf <<EOF
 
 [realms]
 	$REALM = {
-		kdc = $KDC_KADMIN_SERVER
-		admin_server = $KDC_KADMIN_SERVER
+		kdc = kdc-kadmin
+		admin_server = kdc-kadmin
 	}
 EOF
 echo ""

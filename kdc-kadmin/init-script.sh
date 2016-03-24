@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 echo "==================================================================================="
 echo "==== Kerberos KDC and Kadmin ======================================================"
 echo "==================================================================================="
@@ -7,13 +7,11 @@ echo "==========================================================================
 # In these cases we use the EXAMPLE.COM
 [[ -z $REALM ]] && REALM=EXAMPLE.COM
 [[ -z $SUPPORTED_ENCRYPTION_TYPES ]] && SUPPORTED_ENCRYPTION_TYPES=aes256-cts-hmac-sha1-96:normal
-[[ -z $KDC_KADMIN_SERVER ]] && KDC_KADMIN_SERVER=$(hostname -f)
 [[ -z $KADMIN_PRINCIPAL ]] && KADMIN_PRINCIPAL=kadmin/admin
 [[ -z $KADMIN_PASSWORD ]] && KADMIN_PASSWORD=MITiys4K5
 KADMIN_PRINCIPAL_FULL=$KADMIN_PRINCIPAL@$REALM
 
 echo "REALM: $REALM"
-echo "KDC_KADMIN_SERVER: $KDC_KADMIN_SERVER"
 echo "KADMIN_PRINCIPAL_FULL: $KADMIN_PRINCIPAL_FULL"
 echo "KADMIN_PASSWORD: $KADMIN_PASSWORD"
 echo ""
@@ -21,12 +19,15 @@ echo ""
 echo "==================================================================================="
 echo "==== /etc/krb5.conf ==============================================================="
 echo "==================================================================================="
+KDC_KADMIN_SERVER=$(hostname -f)
 tee /etc/krb5.conf <<EOF
 [libdefaults]
 	default_realm = $REALM
 
 [realms]
 	$REALM = {
+		kdc_ports = 88,750
+		kadmind_port = 749
 		kdc = $KDC_KADMIN_SERVER
 		admin_server = $KDC_KADMIN_SERVER
 	}
