@@ -25,9 +25,9 @@ can simply copy this repository files to your project and them modify them so th
 application inside the kerberos-client container.
 
 If you want to keep up with the possible changes of this repo, you can use:
- - git submodules
- - git [fake submodules](http://debuggable.com/posts/git-fake-submodules:4b563ee4-f3cc-4061-967e-0e48cbdd56cb)
- - git [subtrees](https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec#.zcxs92mvl)
+ - [git submodules](https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407#.a2hp3b6wa)
+ - [git fake submodules](http://debuggable.com/posts/git-fake-submodules:4b563ee4-f3cc-4061-967e-0e48cbdd56cb)
+ - [git subtrees](https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec#.zcxs92mvl)
 
 ## License
 docker-kerberos is open source and available under the [MIT license](LICENSE).
