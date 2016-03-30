@@ -1,5 +1,5 @@
 # Docker-kerberos
-An docker image that creates the simplest Kerberos KDC. And a docker image that is a kerberos client.
+A docker image that creates the simplest Kerberos KDC and a docker image that is a kerberos client.
 
 # What you get
 
@@ -14,7 +14,7 @@ Just run `docker-compose up` on the root directory of this repo.
 ## How to customize (eg. change the REALM)
 
  1. Change the file `kerberos.env`. This way the properties will be shared between the kdc and the kerberos client.
- 1. Define environment variables in the `docker-compose.yml`. You will need to define them for each service that uses kerberos.
+ 1. Define environment variables in `docker-compose.yml`. You will need to define them for each service that uses kerberos.
 
 ## Sugested usage of this repo
 You have a project that uses kerberos principals. In order to test your project you will need a working kerberos installation.
