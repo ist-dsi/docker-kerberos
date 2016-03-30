@@ -1,27 +1,23 @@
 version: "2"
 services:
-  # This service MUST have the name "kdc-kadmin" otherwise the kerberos-client wont be able to talk with the KDC.
-  # If you would like to change the name, be sure to edit the file kerberos-client/configureKerberosClient.sh
-  # and change the configurations "kdc" and "admin_server" in the /etc/krb5.conf
+  # This service MUST have the name "kdc-kadmin" otherwise every kerberos client won't be able to talk with the KDC.
+  # If would like to change the name edit the file configureKerberosClient.sh and change the configurations
+  # "kdc" and "admin_server" in the /etc/krb5.conf section.
   kdc-kadmin:
     build: ./kdc-kadmin
     env_file: kerberos.env
-    ports:
-      - "749:749"
-      - "88:88"
     volumes:
+      # This is needed otherwise there won't be enough entropy to generate a new kerberos realm
       - /dev/urandom:/dev/random
 
   kerberos-client:
     build: ./kerberos-client
     env_file: kerberos.env
-    links:
-      - kdc-kadmin
 
 # NOTE:
 #  "env_file: kerberos.env" is optional.
 #  In case no .env file is supplied, nor any environment variable is set, the following values will be used:
-#   REALM=the domain of the container obtained with `hostname -d`, if no domain has set "EXAMPLE.COM" will be used.
+#   REALM=the domain of the container obtained with `hostname -d`, if no domain is set "EXAMPLE.COM" will be used.
 #   SUPPORTED_ENCRYPTION_TYPES=aes256-cts-hmac-sha1-96:normal
 #   KADMIN_PRINCIPAL=kadmin/admin
 #   KADMIN_PASSWORD=MITiys4K5

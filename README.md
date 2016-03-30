@@ -17,29 +17,17 @@ Just run `docker-compose up` on the root directory of this repo.
  1. Define environment variables in `docker-compose.yml`. You will need to define them for each service that uses kerberos.
 
 ## Sugested usage of this repo
-You have a project that uses kerberos principals. In order to test your project you will need a working kerberos installation.
-Otherwise you run the risk of possibly performing destructive modifications to your production kerberos.
-This repo allows you to create a kerberos installation without any fuss. The best approach is to use this repo as a [fake
-submodule](http://debuggable.com/posts/git-fake-submodules:4b563ee4-f3cc-4061-967e-0e48cbdd56cb) on your project as follows:
+This repository has designed to bootstrap the creation of a KDC for projects that need a Kerberos installation to perform tests.
 
- 1. `cd yourProjectRepo`
- 2. `git clone https://github.com/ist-dsi/docker-kerberos`
- 3. `git add docker-kerberos/` do not forget the trailing "/" (slash)
- 4. Make the necessary modifications to the kerberos-client files and the `docker-compose.yml` in order to
-    be able to test your application.
- 5. Then from your project repo and NOT from the docker-kerberos repo commit the changed files. (You can verify that the
-    files were only commited to your repo and not the docker-kerberos repo by navigating to the docker-kerberos repo
-    a doing a `git status`)
- 6. If this repo changes all you need to do is:
-   ```
-   cd yourProjectRepo/docker-kerberos
-   git pull
-   git merge
-   cd ..
-   git add
-   git commit
-   git push
-   ```
+For example: you have a project that uses kerberos principals and you need to test it against a working Kerberos installation.
+You will need to create in your project repository the necessary files to setup a Kerberos. To bootstrap that process you
+can simply copy this repository files to your project and them modify them so that you can test your
+application inside the kerberos-client container.
+
+If you want to keep up with the possible changes of this repo, you can use:
+ - git submodules
+ - git [fake submodules](http://debuggable.com/posts/git-fake-submodules:4b563ee4-f3cc-4061-967e-0e48cbdd56cb)
+ - git [subtrees](https://medium.com/@porteneuve/mastering-git-subtrees-943d29a798ec#.zcxs92mvl)
 
 ## License
 docker-kerberos is open source and available under the [MIT license](LICENSE).
