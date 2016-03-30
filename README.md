@@ -31,13 +31,15 @@ submodule](http://debuggable.com/posts/git-fake-submodules:4b563ee4-f3cc-4061-96
     files were only commited to your repo and not the docker-kerberos repo by navigating to the docker-kerberos repo
     a doing a `git status`)
  6. If this repo changes all you need to do is:
-   1. `cd yourProjectRepo/docker-kerberos`
-   2. `git stash`
-   3. `git pull`
-   4. `git stash pop`
-   5. `cd ..`
-   6. `git add -A`
-   7. `git commit`
+   ```
+   cd yourProjectRepo/docker-kerberos
+   git pull
+   git merge
+   cd ..
+   git add
+   git commit
+   git push
+   ```
 
 ## License
 docker-kerberos is open source and available under the [MIT license](LICENSE).
