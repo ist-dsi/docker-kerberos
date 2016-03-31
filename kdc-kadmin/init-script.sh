@@ -2,13 +2,6 @@
 echo "==================================================================================="
 echo "==== Kerberos KDC and Kadmin ======================================================"
 echo "==================================================================================="
-[[ -z $REALM ]] && REALM=$(hostname -d | sed 's/.*/\U&/')
-# If the REALM is still empty then the user did not define a domain
-# In these cases we use the EXAMPLE.COM
-[[ -z $REALM ]] && REALM=EXAMPLE.COM
-[[ -z $SUPPORTED_ENCRYPTION_TYPES ]] && SUPPORTED_ENCRYPTION_TYPES=aes256-cts-hmac-sha1-96:normal
-[[ -z $KADMIN_PRINCIPAL ]] && KADMIN_PRINCIPAL=kadmin/admin
-[[ -z $KADMIN_PASSWORD ]] && KADMIN_PASSWORD=MITiys4K5
 KADMIN_PRINCIPAL_FULL=$KADMIN_PRINCIPAL@$REALM
 
 echo "REALM: $REALM"
