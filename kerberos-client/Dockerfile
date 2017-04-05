@@ -1,9 +1,11 @@
 FROM debian:jessie
 MAINTAINER Simão Martins "simao.martins@tecnico.ulisboa.pt"
 
-RUN apt-get -qq --yes update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes krb5-user locales
-RUN apt-get clean
+ENV DEBIAN_FRONTEND noninteractive
+# The -qq implies --yes
+RUN apt-get -qq update
+RUN apt-get -qq install apt-transport-https locales krb5-user
+RUN apt-get -qq clean
 
 RUN locale-gen "en_US.UTF-8"
 RUN echo "LC_ALL=\"en_US.UTF-8\"" >> /etc/default/locale
