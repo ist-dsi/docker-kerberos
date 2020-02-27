@@ -76,13 +76,4 @@ echo ""
 kadmin.local -q "addprinc -pw $KADMIN_PASSWORD noPermissions@$REALM"
 echo ""
 
-echo "==================================================================================="
-echo "==== Run the services ============================================================="
-echo "==================================================================================="
-# We want the container to keep running until we explicitly kill it.
-# So the last command cannot immediately exit. See
-#   https://docs.docker.com/engine/reference/run/#detached-vs-foreground
-# for a better explanation.
-
-krb5kdc
-kadmind -nofork
+while true; do sleep infinity; done
